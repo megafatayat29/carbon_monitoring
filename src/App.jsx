@@ -21,7 +21,7 @@ import DigitalizationPage from "./pages/Digitalization"
 import WastePage from "./pages/Waste"
 import TransportSimulationPage from "./pages/Transport"
 import SustainabilityInsightPage from "./pages/Sustainability"
-import EsgReportPage from "./pages/EsgReport"
+import ReportPage from "./pages/Report"
 // ---------- helper load CSV ----------
 const loadCSV = async (path) => {
   return new Promise((resolve, reject) => {
@@ -48,8 +48,8 @@ export default function App() {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const energy = await loadCSV("/data/energy_reading_full_month.csv");
-        const baseline = await loadCSV("/data/baseline_target.csv");
+        const energy = await loadCSV("/carbon_monitoring/data/energy_reading_full_month.csv");
+        const baseline = await loadCSV("/carbon_monitoring/data/baseline_target.csv");
         setEnergyData(energy);
         setBaselineTargets(baseline);
       } catch (error) {
@@ -70,7 +70,7 @@ export default function App() {
     { id: "waste", title: "Waste Management", icon: Recycle },
     { id: "transport", title: "Transportation", icon: Car },
     { id: "insight", title: "Sustainability Insight", icon: TrendingUp },
-    { id: "esg", title: "ESG Report", icon: FileText },
+    { id: "report", title: "Report", icon: FileText },
   ];
 
   const renderContent = () => {
@@ -95,8 +95,8 @@ export default function App() {
         return <TransportSimulationPage title="Transportation" icon={Car} />;
       case "insight":
         return <SustainabilityInsightPage title="Sustainability Insight" icon={TrendingUp} />;
-      case "esg":
-        return <EsgReportPage title="ESG Report" icon={FileText} />;
+      case "report":
+        return <ReportPage title="Report" icon={FileText} />;
       default:
         return <MockPage title="404 - Page Not Found" icon={FileText} />;
     }

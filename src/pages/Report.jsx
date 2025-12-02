@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FileText, Download, CheckCircle, BarChart2, Leaf, Building2, Users, PieChart, Info, X, TrendingDown, TrendingUp } from "lucide-react";
 
 // --- Data Mock untuk Summary ---
-const esgSummaryData = [
+const summaryData = [
     { title: "Total Emisi (Scope 2)", value: "28.5 tCO₂", icon: Leaf, color: "text-green-600", bg: "bg-green-50" },
     { title: "Pengurangan Tahun Ini", value: "-12.4%", icon: TrendingDown, color: "text-red-600", bg: "bg-red-50" },
     { title: "Offset PLTS", value: "15.2 tCO₂", icon: Building2, color: "text-blue-600", bg: "bg-blue-50" },
@@ -10,7 +10,7 @@ const esgSummaryData = [
 ];
 
 // --- Data Mock untuk Struktur Laporan ---
-const esgStructure = [
+const structure = [
     {
         title: "Environment (E)",
         icon: Leaf,
@@ -47,14 +47,14 @@ const esgStructure = [
     },
 ];
 
-const EsgReportPage = () => {
+const ReportPage = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const handleGeneratePdf = () => {
         setIsModalOpen(true);
     };
 
-    const EsgSummaryCard = ({ data }) => (
+    const SummaryCard = ({ data }) => (
         <div className="bg-white rounded-xl shadow-lg border p-6 flex items-center justify-between transition-shadow duration-300 hover:shadow-xl">
             <div>
                 <p className="text-sm text-gray-500 font-medium">{data.title}</p>
@@ -82,7 +82,7 @@ const EsgReportPage = () => {
                         </button>
                     </div>
                     <p className="text-gray-700 leading-relaxed">
-                        Fungsi *Generate ESG Report (PDF)* belum diimplementasikan. 
+                        Fungsi *Generate Report (PDF)* belum diimplementasikan. 
                         Untuk versi produksi, fitur ini akan terintegrasi dengan layanan backend untuk menyusun dokumen sesuai standar GRI dan OJK.
                     </p>
                     <button
@@ -106,10 +106,10 @@ const EsgReportPage = () => {
                 <div>
                     <h2 className="text-3xl font-extrabold text-gray-800 flex items-center gap-3">
                         <FileText className="w-8 h-8 text-indigo-600" />
-                        ESG Reporting Center
+                        Reporting Center
                     </h2>
                     <p className="mt-1 text-lg text-gray-500">
-                        Menyusun laporan ESG berdasarkan data real-time, sesuai standar OJK, GRI, & ISO 14064.
+                        Menyusun laporan berdasarkan data real-time, sesuai standar OJK, GRI, & ISO 14064.
                     </p>
                 </div>
 
@@ -118,18 +118,18 @@ const EsgReportPage = () => {
                     className="px-6 py-3 bg-indigo-600 text-white rounded-xl shadow-lg hover:bg-indigo-700 flex items-center gap-2 transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] font-semibold"
                 >
                     <Download className="w-5 h-5" />
-                    Generate ESG Report (PDF)
+                    Generate Report (PDF)
                 </button>
             </div>
 
             {/* SUMMARY CARDS */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-8">
-                {esgSummaryData.map((data, index) => (
-                    <EsgSummaryCard key={index} data={data} />
+                {summaryData.map((data, index) => (
+                    <SummaryCard key={index} data={data} />
                 ))}
             </div>
 
-            {/* ESG SECTIONS: Structure & Content */}
+            {/* SECTIONS: Structure & Content */}
             <div className="bg-white rounded-xl shadow-lg p-8 border mt-8">
                 <h3 className="font-extrabold text-2xl flex items-center gap-3 mb-6 text-gray-800">
                     <BarChart2 className="w-6 h-6 text-indigo-600" />
@@ -137,7 +137,7 @@ const EsgReportPage = () => {
                 </h3>
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    {esgStructure.map((section, index) => (
+                    {structure.map((section, index) => (
                         <div key={index} className="border-l-4 border-gray-100 pl-4 py-2">
                             <h4 className="font-bold flex items-center gap-2 text-xl mb-3">
                                 <section.icon className={`w-6 h-6 ${section.color}`} />
@@ -156,7 +156,7 @@ const EsgReportPage = () => {
                 </div>
             </div>
 
-            {/* ESG NOTES & GUIDANCE */}
+            {/* NOTES & GUIDANCE */}
             <div className="bg-white rounded-xl shadow-lg p-6 border mt-8">
                 <h3 className="font-semibold text-lg flex items-center gap-2 text-gray-800 border-b pb-2 mb-4">
                     <Info className="w-5 h-5 text-indigo-600" />
@@ -164,7 +164,7 @@ const EsgReportPage = () => {
                 </h3>
 
                 <p className="text-gray-700 leading-relaxed">
-                    Laporan ESG ini secara otomatis mengacu pada pedoman Otoritas Jasa Keuangan (OJK) - 
+                    Laporan ini secara otomatis mengacu pada pedoman Otoritas Jasa Keuangan (OJK) - 
                     <b className="text-indigo-600"> SEOJK 16/2021</b> dan kerangka kerja 
                     <b className="text-indigo-600"> GRI Standards 2021</b>.
                 </p>
@@ -179,4 +179,4 @@ const EsgReportPage = () => {
     );
 }
 
-export default EsgReportPage;
+export default ReportPage;
